@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".Activitys.CadImovelActivity"
@@ -23,13 +23,13 @@
         android:id="@+id/edtDsImovel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="top|left"
         android:hint="Insira as caracteristicas do imóvel"
         android:inputType="textMultiLine"
-    android:lines="4"
-    android:minLines="2"
-    android:gravity="top|left"
-    android:maxLines="6"
-    android:scrollbars="vertical"/>
+        android:lines="4"
+        android:maxLines="6"
+        android:minLines="2"
+        android:scrollbars="vertical" />
 
     <Space
         android:layout_width="match_parent"
@@ -110,39 +110,17 @@
                 android:layout_height="42dp"
                 android:autofillHints="Estado"
                 android:persistentDrawingCache="none"></Spinner>
+
+
         </LinearLayout>
 
     </TableRow>
 
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/btnMapa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ver no Mapa" />
-    </TableRow>
-
-    <Space
+    <Button
+        android:id="@+id/btnMapa"
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
-
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/btnAddEddImovel"
-            android:text="Adicionar" />
-
-        <Button
-            android:id="@+id/btnCancelImovel"
-            android:text="Candelar" />
-    </TableRow>
+        android:layout_height="match_parent"
+        android:text="Ver no Mapa" />
 
 
 </LinearLayout>

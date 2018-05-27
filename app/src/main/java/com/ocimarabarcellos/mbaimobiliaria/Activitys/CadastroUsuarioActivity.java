@@ -68,6 +68,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             }
         });
 
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
     }
 
     private void CadastrarUsuario() {

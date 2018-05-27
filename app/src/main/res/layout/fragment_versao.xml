@@ -3,12 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     tools:context=".Fragments.VersaoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="versão" />
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNomeVersao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Agenda de Imóveis Barcellos"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/ivLogoVersao"
+            android:layout_width="wrap_content"
+            android:layout_height="225dp"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="false"
+            android:baselineAlignBottom="false"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tvVersaoApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Versão:XXXXXX"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="(011) 3684-5443"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
 
 </FrameLayout>

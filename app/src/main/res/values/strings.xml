@@ -31,4 +31,5 @@
     <string name="ds_lista">IMOVÉIS</string>
     <string name="descri_o_do_im_vel">DESCRIÇÃO DO IMÓVEL</string>
     <string name="rua">Rua</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

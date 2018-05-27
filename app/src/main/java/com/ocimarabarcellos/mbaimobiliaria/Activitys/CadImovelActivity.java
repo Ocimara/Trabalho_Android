@@ -72,36 +72,36 @@ public class CadImovelActivity extends AppCompatActivity {
 
                 if (imovAtual != null) { //Edição
                     if (!edtDsImovel.getText().toString().isEmpty())
-                        {
-                            imov.setId(imovAtual.getId());
+                    {
+                        imov.setId(imovAtual.getId());
 
-                            if (imovelDAO.atualizar(imov)) {
-                                finish();
-                                Toast.makeText(getApplicationContext(), "Imóvel Salvo com sucesso!", Toast.LENGTH_LONG).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(), "Erro ao salvar Imóvel!", Toast.LENGTH_LONG).show();
-                            }
-
+                        if (imovelDAO.atualizar(imov)) {
+                            finish();
+                            Toast.makeText(getApplicationContext(), "Imóvel Salvo com sucesso!", Toast.LENGTH_LONG).show();
                         }
-                    } else {
-                    //Edição Adição
-                    //executa salvar para o item
-
-                        if (!edtDsImovel.getText().toString().isEmpty()) {
-                            if (imovelDAO.salvar(imov)) {
-                                finish();
-                                Toast.makeText(getApplicationContext(), "Imóvel Salvo com sucesso!", Toast.LENGTH_LONG).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(), "Erro ao salvar Imóvel!", Toast.LENGTH_LONG).show();
-                            }
-
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "Erro ao salvar Imóvel!", Toast.LENGTH_LONG).show();
                         }
 
                     }
+                } else {
+                    //Edição Adição
+                    //executa salvar para o item
+
+                    if (!edtDsImovel.getText().toString().isEmpty()) {
+                        if (imovelDAO.salvar(imov)) {
+                            finish();
+                            Toast.makeText(getApplicationContext(), "Imóvel Salvo com sucesso!", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "Erro ao salvar Imóvel!", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
+                }
 
                 break;
 
@@ -152,7 +152,7 @@ public class CadImovelActivity extends AppCompatActivity {
                 //pega nome pela posição
                 uf = parent.getItemAtPosition(posicao).toString();
 
-               // Toast.makeText(CadImovelActivity.this, "Nome Selecionado: " + uf, Toast.LENGTH_LONG).show();
+                // Toast.makeText(CadImovelActivity.this, "Nome Selecionado: " + uf, Toast.LENGTH_LONG).show();
             }
 
             @Override
