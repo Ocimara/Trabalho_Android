@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "531086565805",
+    "firebase_url": "https://mbaocimara.firebaseio.com",
+    "project_id": "mbaocimara",
+    "storage_bucket": "mbaocimara.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531086565805:android:d4ff4f370ce9df50",
+        "android_client_info": {
+          "package_name": "com.ocimarabarcellos.mbaimobiliaria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531086565805-1iiui28dk4133mqrnnoh0cnl3pdt5h6p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ocimarabarcellos.mbaimobiliaria",
+            "certificate_hash": "a065aca35b8dd4c4b96dfbf0617e65dcf00efb7d"
+          }
+        },
+        {
+          "client_id": "531086565805-kh1s03hd9as71rnkomfh4mqrv4t36lag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZw8Ek5r-4mR0YYy4kQPhzoCgUNKjcjuc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531086565805-kh1s03hd9as71rnkomfh4mqrv4t36lag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
