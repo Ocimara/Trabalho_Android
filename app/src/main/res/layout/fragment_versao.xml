@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     tools:context=".Fragments.VersaoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvNomeVersao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:text="Agenda de Imóveis Barcellos"
             android:textSize="20sp" />
@@ -25,27 +25,38 @@
             android:id="@+id/ivLogoVersao"
             android:layout_width="wrap_content"
             android:layout_height="225dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:adjustViewBounds="false"
             android:baselineAlignBottom="false"
             android:src="@drawable/logo" />
 
         <TextView
+            android:id="@+id/tvNmDev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Desenvolvido por: \n Ocimara Ferreira Barcellos Carizato"
+            android:textSize="20sp" />
+
+
+        <TextView
             android:id="@+id/tvVersaoApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:gravity="center"
-            android:text="Versão:XXXXXX"
+            android:text="Versão:1.0"
             android:textSize="20sp" />
 
+
         <TextView
-            android:id="@+id/tvNome"
+            android:id="@+id/tvCall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:gravity="center"
-            android:text="(011) 3684-5443"
+            android:text="Contato: 98887-8482"
             android:textSize="20sp" />
 
 

@@ -5,24 +5,30 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+
+import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ocimarabarcellos.mbaimobiliaria.Classes.Imovel;
+import com.ocimarabarcellos.mbaimobiliaria.DAO.ImovelDAO;
 import com.ocimarabarcellos.mbaimobiliaria.Fragments.ImoveisFragment;
 import com.ocimarabarcellos.mbaimobiliaria.Fragments.VersaoFragment;
 import com.ocimarabarcellos.mbaimobiliaria.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrincipalActivity extends AppCompatActivity {
-
-    private TextView mTextMessage;
-
 
     private FirebaseAuth autenticacao;
     private FrameLayout frameLayout;
+    private List<Imovel> lstImoveis = new ArrayList<>();
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -60,7 +66,6 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -68,13 +73,25 @@ public class PrincipalActivity extends AppCompatActivity {
 
         frameLayout = findViewById(R.id.fragment_container);
 
-
-
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        ImoveisFragment imoveisFragment = new ImoveisFragment();
+        fragmentTransaction.replace(R.id.fragment_container, imoveisFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        carregarImoveis();
+
+        MenuItem item = (MenuItem) menu.findItem(R.id.action_share);
+        ShareActionProvider shareAction = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND)
+                .putExtra(Intent.EXTRA_TEXT, carregarImoveis())
+                .setType("text/plain");
+        shareAction.setShareIntent(shareIntent);
         return true;
     }
 
@@ -90,10 +107,34 @@ public class PrincipalActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void  deslogarUsuario(){
+    private void deslogarUsuario() {
         autenticacao.signOut();
         startActivity(new Intent(this, LoginActivity.class));
         finish();
+
+    }
+
+    public String carregarImoveis(){
+
+        StringBuilder strImov = new StringBuilder();
+
+        //Listar Imoveis
+        ImovelDAO imovelDAO = new ImovelDAO(getApplicationContext());
+        lstImoveis = imovelDAO.listar();
+
+        strImov.append("Agenda de Imóveis Barcellos \n");
+        strImov.append("---------------------------------\n");
+
+        for(int i = 0; i < lstImoveis.size(); i++)
+        {
+            Log.i("Imovel" + i,lstImoveis.get(i).getDsCidade());
+            strImov.append(lstImoveis.get(i).getDsCidade() + " - " + lstImoveis.get(i).getDsUF() + "\n");
+            strImov.append(lstImoveis.get(i).getDsEndereco()+ "\n");
+            strImov.append(lstImoveis.get(i).getDsImovel()+ "\n");
+            strImov.append("---------------------------------\n");
+        }
+
+        return strImov.toString();
 
     }
 

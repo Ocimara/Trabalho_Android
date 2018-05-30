@@ -1,5 +1,6 @@
 package com.ocimarabarcellos.mbaimobiliaria.Activitys;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -180,4 +181,21 @@ public class CadImovelActivity extends AppCompatActivity {
         spinner.setSelection(posicaoArray);
     }
 
+
+
+    public void clickVerMapa(View v) {
+
+        Intent intent = new Intent(CadImovelActivity.this, MapsActivity.class );
+
+        Bundle dados = new Bundle();
+
+        dados.putString("Endereco", edtEndereco.getText().toString());
+        dados.putString("Cidade", edtCidade.getText().toString());
+        dados.putString("UF", uf);
+
+        intent.putExtras(dados);
+
+        startActivity(intent);
+        //finish();
+    }
 }
