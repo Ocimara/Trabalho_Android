@@ -36,10 +36,12 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.Button"
         android:text="Logar"/>
 
     <Button
         android:id="@+id/btnCadastre"
+        android:theme="@style/AppTheme.Button"
         android:onClick="Cadastre"
         android:text="CADASTRE-SE"
         android:layout_width="match_parent"

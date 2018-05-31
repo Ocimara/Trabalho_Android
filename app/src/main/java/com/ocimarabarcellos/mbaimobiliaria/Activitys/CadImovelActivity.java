@@ -1,14 +1,21 @@
 package com.ocimarabarcellos.mbaimobiliaria.Activitys;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +34,7 @@ public class CadImovelActivity extends AppCompatActivity {
     private EditText edtDsImovel;
     private EditText edtEndereco;
     private EditText edtCidade;
+    private Button btnMapa;
 
     private Imovel imovAtual;
 
@@ -35,10 +43,17 @@ public class CadImovelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cad_imovel);
 
+        //InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
         edtDsImovel = findViewById(R.id.edtDsImovel);
         edtEndereco = findViewById(R.id.edtEndereco);
         edtCidade = findViewById(R.id.edtCidade);
-        spinner = (Spinner) findViewById(R.id.spnUF);
+        spinner =  findViewById(R.id.spnUF);
+        btnMapa = findViewById(R.id.btnMapa);
+
         loadEstados();
 
         //Recuperar a Imovel que foi passada
@@ -50,9 +65,35 @@ public class CadImovelActivity extends AppCompatActivity {
             edtEndereco.setText(imovAtual.getDsEndereco());
             edtCidade.setText(imovAtual.getDsCidade());
             setarValorUF(imovAtual.getDsUF());
-
         }
 
+        LinearLayout llSpn = findViewById(R.id.llContent);
+        llSpn.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                return true;
+            }
+        });
+
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (imovAtual != null) {
+            btnMapa.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            btnMapa.setVisibility(View.INVISIBLE);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -113,7 +154,6 @@ public class CadImovelActivity extends AppCompatActivity {
     }
 
     public void loadEstados(){
-        // Uma lista contendo os objetos
         siglasUf.add("Selecione");
         siglasUf.add("AC");
         siglasUf.add("AM");
@@ -145,16 +185,33 @@ public class CadImovelActivity extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
 
+
+        Spinner.OnTouchListener hideKeyboard = new Spinner.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                return false;
+
+            }
+        };
+
+        spinner.setOnTouchListener(hideKeyboard);
+
         //Método do Spinner para capturar o item selecionado
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
                 //pega nome pela posição
                 uf = parent.getItemAtPosition(posicao).toString();
 
-                // Toast.makeText(CadImovelActivity.this, "Nome Selecionado: " + uf, Toast.LENGTH_LONG).show();
+
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -196,6 +253,7 @@ public class CadImovelActivity extends AppCompatActivity {
         intent.putExtras(dados);
 
         startActivity(intent);
-        //finish();
     }
+
+
 }

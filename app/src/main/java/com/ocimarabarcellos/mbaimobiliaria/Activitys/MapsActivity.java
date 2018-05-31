@@ -137,20 +137,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            //Place current location marker
-            //LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(latLng);
-            markerOptions.title(mpEnd);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
-            mCurrLocationMarker = mMap.addMarker(markerOptions);
+            if (addressList.size() != 0) {
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                //Place current location marker
+                //LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+                markerOptions.title(mpEnd);
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+                mCurrLocationMarker = mMap.addMarker(markerOptions);
 
-            //move map camera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+                //move map camera
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(18));
 
+            }
+            else
+            {
+                Toast.makeText(MapsActivity.this, "Endereço não encontrado! Tente novamente!", Toast.LENGTH_LONG).show();
+                finish();
+            }
             //stop location updates
             //if (mGoogleApiClient != null) {
              //   LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);

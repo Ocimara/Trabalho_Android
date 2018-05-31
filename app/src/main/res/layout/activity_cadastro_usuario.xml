@@ -44,12 +44,14 @@
 
     <Button
         android:id="@+id/btnCadastrar"
+        android:theme="@style/AppTheme.Button"
         android:text="CADASTRAR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnCancelar"
+        android:theme="@style/AppTheme.Button"
         android:text="CANCELAR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
