@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,18 +29,18 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private CheckBox cbManterConectado;
     private Usuario usuario;
-
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        progressBar = findViewById(R.id.progressBar);
         edtLogin =  (EditText) findViewById(R.id.edtEmail);
         edtSenha =  (EditText) findViewById(R.id.edtSenha);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        cbManterConectado = (CheckBox) findViewById(R.id.cbManterConectado);
 
+        hideProgress();
 
         if (usuarioLogado()) {
             Iniciar();
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         usuario.setEmail(edtLogin.getText().toString());
                         usuario.setSenha(edtSenha.getText().toString());
-                        usuario.setConectado(cbManterConectado.isChecked());
+
                         validaLogin();
 
                     } else {
@@ -64,24 +65,29 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
+
+
     }
 
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+
+    public void hideProgress() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
+
     private void validaLogin(){
+        showProgress();
         autenticacao = ConfigFireBase.getFireBaseAuth();
         autenticacao.signInWithEmailAndPassword(usuario.getEmail().toString(), usuario.getSenha().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    //if (cbManterConectado.isChecked()) {
-                      //  Preferencias pref = new Preferencias(LoginActivity.this);
-                       // pref.salvarUsuarioPreferencias(usuario.getEmail(), usuario.setSenha());
-                    //}
-
                     Iniciar();
-
-
-
                     Toast.makeText(LoginActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_LONG).show();
                 }
                 else
@@ -90,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        hideProgress();
     }
 
 
@@ -119,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
 
 
 }

@@ -67,8 +67,8 @@ public class CadImovelActivity extends AppCompatActivity {
             setarValorUF(imovAtual.getDsUF());
         }
 
-        LinearLayout llSpn = findViewById(R.id.llContent);
-        llSpn.setOnTouchListener(new View.OnTouchListener(){
+        LinearLayout llContent = findViewById(R.id.llContent);
+        llContent.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {

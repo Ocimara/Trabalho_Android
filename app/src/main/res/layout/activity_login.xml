@@ -26,12 +26,6 @@
         android:inputType="textPassword"
         android:hint="SENHA"/>
 
-
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Manter Conectado"
-        android:id="@+id/cbManterConectado"/>
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
@@ -46,5 +40,16 @@
         android:text="CADASTRE-SE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminate="true"
+        android:visibility="gone" />
 
 </LinearLayout>

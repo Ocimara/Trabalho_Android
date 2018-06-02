@@ -1,12 +1,16 @@
 package com.ocimarabarcellos.mbaimobiliaria.Activitys;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,6 +54,18 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
         btnCancelar = (Button) findViewById(R.id.btnCancelar);
 
+        LinearLayout CadUsu = findViewById(R.id.CadUsu);
+        CadUsu.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                return true;
+            }
+        });
+
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +87,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(CadastroUsuarioActivity.this, LoginActivity.class));
                 finish();
 
             }

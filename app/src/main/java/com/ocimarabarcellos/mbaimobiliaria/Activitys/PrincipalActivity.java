@@ -31,6 +31,7 @@ public class PrincipalActivity extends AppCompatActivity {
     private List<Imovel> lstImoveis = new ArrayList<>();
 
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -40,7 +41,7 @@ public class PrincipalActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_imoveis:
 
                     ImoveisFragment imoveisFragment = new ImoveisFragment();
                     fragmentTransaction.replace(R.id.fragment_container, imoveisFragment);
@@ -48,13 +49,12 @@ public class PrincipalActivity extends AppCompatActivity {
 
                     return true;
 
-                case R.id.navigation_dashboard:
+                case R.id.navigation_versao:
                     VersaoFragment versaoFragment = new VersaoFragment();
 
                     fragmentTransaction.replace(R.id.fragment_container, versaoFragment);
                     fragmentTransaction.commit();
-                    return true;
-                case R.id.navigation_notifications:
+
                     return true;
             }
             return false;
@@ -92,6 +92,11 @@ public class PrincipalActivity extends AppCompatActivity {
                 .putExtra(Intent.EXTRA_TEXT, carregarImoveis())
                 .setType("text/plain");
         shareAction.setShareIntent(shareIntent);
+
+
+
+
+
         return true;
     }
 

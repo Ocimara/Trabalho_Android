@@ -5,7 +5,7 @@ public class Usuario {
     private String email;
     private String senha;
     private String nome;
-    private Boolean conectado;
+
 
     public int getId() {
         return id;
@@ -39,15 +39,6 @@ public class Usuario {
         this.nome = nome;
     }
 
-
-    public Boolean getConectado() {
-        return conectado;
-    }
-
-    public void setConectado(Boolean conectado) {
-
-        this.conectado = conectado;
-    }
 
 
 }

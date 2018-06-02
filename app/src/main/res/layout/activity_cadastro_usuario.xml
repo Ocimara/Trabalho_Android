@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:gravity="center"
     android:orientation="vertical"
+    android:id="@+id/CadUsu"
     tools:context=".Activitys.CadastroUsuarioActivity">
 
     <TextView
