@@ -32,4 +32,20 @@
     <string name="descri_o_do_im_vel">DESCRIÇÃO DO IMÓVEL</string>
     <string name="rua">Rua</string>
     <string name="title_activity_maps">Map</string>
+    <string name="itemSalvar">Salvar</string>
+    <string name="action_sair">Desconectar</string>
+    <string name="action_share">Compartilhar</string>
+    <string name="tvNomeVersao">Agenda de Imóveis Barcellos</string>
+    <string name="tvNomeDev">Desenvolvido por:   Ocimara Ferreira Barcellos Carizato</string>
+    <string name="tvVersaoAPP">Versão:1.0</string>
+    <string name="tvCall">Contato: 98887-8482</string>
+    <string name="tvNome">Agenda de Imóveis Barcellos</string>
+    <string name="fontCasual">casual</string>
+    <string name="edtEmail">E-MAIL</string>
+    <string name="edtSenha">SENHA</string>
+    <string name="btnLogin">Logar</string>
+    <string name="btnCadastre">Cadastre-se</string>
+    <string name="tvCidadeUF">Cidade e Estado</string>
+    <string name="tvEndereco">Endereço do Imovel</string>
+    <string name="tvDesc">Descrição Geral</string>
 </resources>

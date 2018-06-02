@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardElevation="13dp">
+    android:layout_margin="@dimen/margin5"
+    app:cardElevation="@dimen/CadElev">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/margin5"
             android:orientation="vertical">
 
 
@@ -22,15 +22,15 @@
                 android:id="@+id/tvCidadeUf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cidade e Estado"
-                android:textSize="28sp"
+                android:text="@string/tvCidadeUF"
+                android:textSize="@dimen/font28"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvEndereco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Endereço do Imovel" />
+                android:text="@string/tvEndereco" />
 
             <TextView
                 android:id="@+id/tvDesc"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Descrição Geral" />
+                android:text="@string/tvDesc" />
         </LinearLayout>
     </RelativeLayout>
 

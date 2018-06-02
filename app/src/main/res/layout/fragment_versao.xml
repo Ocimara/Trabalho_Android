@@ -3,29 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
+    android:layout_margin="@dimen/margin5"
     tools:context=".Fragments.VersaoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/margin5"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvNomeVersao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/margin5"
             android:gravity="center"
-            android:text="Agenda de Imóveis Barcellos"
-            android:textSize="20sp" />
+            android:text="@string/tvNomeVersao"
+            android:textSize="@dimen/font20" />
 
         <ImageView
             android:id="@+id/ivLogoVersao"
             android:layout_width="wrap_content"
-            android:layout_height="225dp"
-            android:layout_margin="5dp"
+            android:layout_height="@dimen/heightLogoVersao"
+            android:layout_margin="@dimen/margin5"
             android:adjustViewBounds="false"
             android:baselineAlignBottom="false"
             android:src="@drawable/logo" />
@@ -34,30 +34,30 @@
             android:id="@+id/tvNmDev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/margin5"
             android:gravity="center"
-            android:text="Desenvolvido por: \n Ocimara Ferreira Barcellos Carizato"
-            android:textSize="20sp" />
+            android:text="@string/tvNomeDev"
+            android:textSize="@dimen/font20" />
 
 
         <TextView
             android:id="@+id/tvVersaoApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/margin5"
             android:gravity="center"
-            android:text="Versão:1.0"
-            android:textSize="20sp" />
+            android:text="@string/tvVersaoAPP"
+            android:textSize="@dimen/font20" />
 
 
         <TextView
             android:id="@+id/tvCall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/margin5"
             android:gravity="center"
-            android:text="Contato: 98887-8482"
-            android:textSize="20sp" />
+            android:text="@string/tvCall"
+            android:textSize="@dimen/font20" />
 
 
     </LinearLayout>

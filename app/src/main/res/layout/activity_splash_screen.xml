@@ -18,18 +18,18 @@
     <TextView
         android:id="@+id/tvNome"
         android:layout_width="match_parent"
-        android:layout_height="113dp"
+        android:layout_height="@dimen/heightNome"
         android:gravity="center"
         android:minLines="2"
-        android:text="Agenda de Imóveis Barcellos"
-        android:textColor="#ffffff"
-        android:textSize="30sp"
-        app:fontFamily="casual" />
+        android:text="@string/tvNome"
+        android:textColor="@color/txtBranco"
+        android:textSize="@dimen/font30"
+        app:fontFamily="@string/fontCasual" />
 
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
-        android:layout_height="225dp"
+        android:layout_height="@dimen/heightIvLogo"
         android:adjustViewBounds="false"
         android:baselineAlignBottom="false"
         app:srcCompat="@drawable/logo" />

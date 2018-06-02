@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="E-MAIL"/>
+        android:hint="@string/edtEmail"/>
 
 
     <EditText
@@ -24,20 +24,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="SENHA"/>
+        android:hint="@string/edtSenha"/>
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.Button"
-        android:text="Logar"/>
+        android:text="@string/btnLogin"/>
 
     <Button
         android:id="@+id/btnCadastre"
         android:theme="@style/AppTheme.Button"
         android:onClick="Cadastre"
-        android:text="CADASTRE-SE"
+        android:text="@string/btnCadastre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

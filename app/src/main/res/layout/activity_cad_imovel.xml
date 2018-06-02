@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/margin10"
     android:orientation="vertical"
     tools:context=".Activitys.CadImovelActivity"
     android:id="@+id/llContent"
@@ -14,7 +14,7 @@
         android:id="@+id/tvDsImovel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/margin5"
         android:text="Descrição do Imóvel"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textSize="18sp"
@@ -25,7 +25,7 @@
         android:id="@+id/edtDsImovel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/margin5"
         android:gravity="top|left"
         android:hint="Insira as caracteristicas do imóvel"
         android:inputType="textMultiLine"
@@ -39,7 +39,7 @@
         android:id="@+id/tvDsEndereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/margin5"
         android:text="Endereço"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textSize="18sp"
@@ -50,17 +50,14 @@
         android:id="@+id/edtEndereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/margin5"
         android:hint="Insira o Endereço do imóvel"></EditText>
-
-
-
 
             <TextView
                 android:id="@+id/tvDsCidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/margin5"
                 android:text="Cidade"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textSize="18sp"
@@ -70,45 +67,34 @@
                 android:id="@+id/edtCidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/margin5"
                 android:hint="Preencha Cidade do Imóvel"
                 android:inputType="text"
                 tools:layout_editor_absoluteY="1dp" />
-
-
-
-
-
             <TextView
                 android:id="@+id/tvDsUF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/margin5"
                 android:text="UF"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <Spinner
                 android:id="@+id/spnUF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/margin5"
                 android:autofillHints="Estado"
                 android:persistentDrawingCache="none"></Spinner>
-
-
-
-
-
-    <Button
-        android:id="@+id/btnMapa"
-        android:theme="@style/AppTheme.Button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:onClick="clickVerMapa"
-        android:text="Ver no Mapa" />
+            <Button
+                android:id="@+id/btnMapa"
+                android:theme="@style/AppTheme.Button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin5"
+                android:onClick="clickVerMapa"
+                android:text="Ver no Mapa" />
 
 
 </LinearLayout>
