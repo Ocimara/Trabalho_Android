@@ -1,5 +1,6 @@
 package com.ocimarabarcellos.mbaimobiliaria.Activitys;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -29,18 +30,17 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private CheckBox cbManterConectado;
     private Usuario usuario;
-    private ProgressBar progressBar;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        progressBar = findViewById(R.id.progressBar);
         edtLogin =  (EditText) findViewById(R.id.edtEmail);
         edtSenha =  (EditText) findViewById(R.id.edtSenha);
         btnLogin = (Button) findViewById(R.id.btnLogin);
 
-        hideProgress();
+
 
         if (usuarioLogado()) {
             Iniciar();
@@ -49,17 +49,17 @@ public class LoginActivity extends AppCompatActivity {
             btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     if (!edtLogin.getText().toString().equals("") && !edtSenha.getText().toString().equals("")) {
                         usuario = new Usuario();
 
                         usuario.setEmail(edtLogin.getText().toString());
                         usuario.setSenha(edtSenha.getText().toString());
-
                         validaLogin();
-
                     } else {
                         Toast.makeText(LoginActivity.this, getString(R.string.msg_email_senha), Toast.LENGTH_LONG).show();
                     }
+
                 }
 
             });
@@ -69,18 +69,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-
-    public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
-    }
-
 
     private void validaLogin(){
-        showProgress();
+        showProgressDialog();
         autenticacao = ConfigFireBase.getFireBaseAuth();
         autenticacao.signInWithEmailAndPassword(usuario.getEmail().toString(), usuario.getSenha().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -89,14 +80,17 @@ public class LoginActivity extends AppCompatActivity {
 
                     Iniciar();
                     Toast.makeText(LoginActivity.this, getString(R.string.sucesso_login), Toast.LENGTH_LONG).show();
+                    closeProgressDialog();
                 }
                 else
                 {
                     Toast.makeText(LoginActivity.this, getString(R.string.error_usu_senha), Toast.LENGTH_LONG).show();
+                    closeProgressDialog();
+
                 }
             }
         });
-        hideProgress();
+
     }
 
 
@@ -126,6 +120,23 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+    private void showProgressDialog() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setMessage("Aguarde...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        progressDialog.show();
+    }
+
+
+    private void closeProgressDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
+    }
+
 
 
 

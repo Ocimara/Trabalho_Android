@@ -15,6 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activitys.splashScreen"
+            android:screenOrientation="portrait"
             android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,13 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activitys.LoginActivity" />
-        <activity android:name=".Activitys.CadastroUsuarioActivity" />
+        <activity android:name=".Activitys.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name=".Activitys.CadastroUsuarioActivity" android:screenOrientation="portrait" />
         <activity
-            android:name=".Activitys.PrincipalActivity"
+            android:name=".Activitys.PrincipalActivity" android:screenOrientation="portrait"
             android:label="@string/title_activity_lista_imoveis" />
-        <activity android:name=".Activitys.CadImovelActivity" />
-        <activity android:name=".Activitys.item_imovel" />
+        <activity android:name=".Activitys.CadImovelActivity" android:screenOrientation="portrait" />
+        <activity android:name=".Activitys.item_imovel" android:screenOrientation="portrait" />
 
         <service android:name=".FireBase.CDCMessasingService">
             <intent-filter>
@@ -58,6 +59,7 @@
 
         <activity
             android:name=".Activitys.MapsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_maps" />
     </application>
 

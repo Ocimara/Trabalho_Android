@@ -1,5 +1,6 @@
 package com.ocimarabarcellos.mbaimobiliaria.Activitys;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,7 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +35,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText edtCadNome;
     private Button btnCadastrar;
     private Button btnCancelar;
-    private ProgressBar progressBar;
+    ProgressDialog progressDialog;
 
     private FirebaseAuth autenticacao;
     private FirebaseDatabase database;
@@ -47,7 +47,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
-        progressBar = findViewById(R.id.progressBar);
+
         edtCadEmail = (EditText) findViewById(R.id.edtCadEmail);
         edtCadSenha1 = (EditText) findViewById(R.id.edtCadSenha1);
         edtCadSenha2 = (EditText) findViewById(R.id.edtCadSenha2);
@@ -68,7 +68,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             }
         });
 
-        showProgress();
+
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -113,7 +113,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
             }
         });
-        hideProgress();
+
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,18 +126,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
     }
 
-
-    public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-
-    public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
-    }
-
-
     private void CadastrarUsuario() {
+        showProgressDialog();
         autenticacao = ConfigFireBase.getFireBaseAuth();
         autenticacao.createUserWithEmailAndPassword(
                 usuario.getEmail(),
@@ -152,6 +142,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                        usuario.setEmail(edtCadEmail.getText().toString());
                        usuario.setSenha(edtCadSenha1.getText().toString());
                        Iniciar();
+                       closeProgressDialog();
                    }
                 } else {
                     String erroExcecao = "";
@@ -172,7 +163,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                         erroExcecao = getString(R.string.error_efetuar_cadastro);
                         e.printStackTrace();
                     }
-
+                    closeProgressDialog();
                     Toast.makeText(CadastroUsuarioActivity.this, "Erro:" + erroExcecao, Toast.LENGTH_LONG).show();
 
                 }
@@ -200,6 +191,22 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
         startActivity(new Intent(this, PrincipalActivity.class));
         finish();
+    }
+
+    private void showProgressDialog() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(CadastroUsuarioActivity.this);
+            progressDialog.setMessage("Aguarde...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        progressDialog.show();
+    }
+
+
+    private void closeProgressDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
 }
