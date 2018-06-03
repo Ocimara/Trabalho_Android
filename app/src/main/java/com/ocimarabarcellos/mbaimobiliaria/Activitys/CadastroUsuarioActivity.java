@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +35,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText edtCadNome;
     private Button btnCadastrar;
     private Button btnCancelar;
+    private ProgressBar progressBar;
 
     private FirebaseAuth autenticacao;
     private FirebaseDatabase database;
@@ -45,7 +47,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
-
+        progressBar = findViewById(R.id.progressBar);
         edtCadEmail = (EditText) findViewById(R.id.edtCadEmail);
         edtCadSenha1 = (EditText) findViewById(R.id.edtCadSenha1);
         edtCadSenha2 = (EditText) findViewById(R.id.edtCadSenha2);
@@ -66,24 +68,52 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             }
         });
 
+        showProgress();
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                if (edtCadSenha1.getText().toString().equals(edtCadSenha2.getText().toString())) {
-                    usuario = new Usuario();
-                    usuario.setEmail(edtCadEmail.getText().toString());
-                    usuario.setSenha(edtCadSenha1.getText().toString());
-                    usuario.setNome(edtCadNome.getText().toString());
 
-                    CadastrarUsuario();
+                StringBuilder erroCampos = new StringBuilder();
 
-                } else {
-                    Toast.makeText(CadastroUsuarioActivity.this, "As senhas não correspondem!", Toast.LENGTH_LONG).show();
+                if (edtCadEmail.getText().toString().equals(""))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_email));
+                }
+                else if (edtCadSenha1.getText().toString().equals(""))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_senha));
+                }
+                else if (edtCadSenha2.getText().toString().equals(""))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_conf_senha));
+                }
+                else if (edtCadNome.getText().toString().equals(""))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_nome));
+                }
+
+                if (erroCampos.toString().equals("")) {
+                    if (edtCadSenha1.getText().toString().equals(edtCadSenha2.getText().toString())) {
+                        usuario = new Usuario();
+                        usuario.setEmail(edtCadEmail.getText().toString());
+                        usuario.setSenha(edtCadSenha1.getText().toString());
+                        usuario.setNome(edtCadNome.getText().toString());
+
+                        CadastrarUsuario();
+
+                    } else {
+                        Toast.makeText(CadastroUsuarioActivity.this, getString(R.string.error_senha_corresponde), Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(CadastroUsuarioActivity.this, erroCampos.toString(), Toast.LENGTH_LONG).show();
                 }
 
             }
         });
-
+        hideProgress();
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +125,17 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         });
 
     }
+
+
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+
+    public void hideProgress() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
+
 
     private void CadastrarUsuario() {
         autenticacao = ConfigFireBase.getFireBaseAuth();
@@ -119,16 +160,16 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                         throw task.getException();
 
                     } catch (FirebaseAuthWeakPasswordException e) {
-                        erroExcecao = "Senha inválida! Senha deverá conter no mínimo 8 caracteres com letras e numeros!";
+                        erroExcecao = getString(R.string.error_senha_caracteres);
 
                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                        erroExcecao = "E-mail inválido!";
+                        erroExcecao = getString(R.string.error_email_invalido);
 
                     } catch (FirebaseAuthUserCollisionException e) {
-                        erroExcecao = "E-mail já cadastrado!";
+                        erroExcecao = getString(R.string.error_email_cadastrado);
 
                     } catch (Exception e) {
-                        erroExcecao = "Erro ao efetuar cadastrado!";
+                        erroExcecao = getString(R.string.error_efetuar_cadastro);
                         e.printStackTrace();
                     }
 
@@ -145,11 +186,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         try {
             referencia = ConfigFireBase.getFireBase().child("usuarios");
             referencia.push().setValue(usuario);
-            Toast.makeText(CadastroUsuarioActivity.this, "Usuario cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadastroUsuarioActivity.this, getString(R.string.sucesso_cadastro), Toast.LENGTH_LONG).show();
             return true;
 
         } catch (Exception e) {
-            Toast.makeText(CadastroUsuarioActivity.this, "Erro ao gravar Usuario!", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadastroUsuarioActivity.this, getString(R.string.error_gravar_cadastro), Toast.LENGTH_LONG).show();
             return false;
         }
 

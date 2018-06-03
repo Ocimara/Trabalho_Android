@@ -148,7 +148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             else
             {
-                Toast.makeText(MapsActivity.this, "Endereço não encontrado! Tente novamente!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MapsActivity.this, getString(R.string.error_end_encontrado), Toast.LENGTH_LONG).show();
                 finish();
             }
 

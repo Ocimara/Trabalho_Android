@@ -2,7 +2,6 @@ package com.ocimarabarcellos.mbaimobiliaria.Fragments;
 
 
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import com.ocimarabarcellos.mbaimobiliaria.Adapter.ImovelAdapter;
 import com.ocimarabarcellos.mbaimobiliaria.Classes.Imovel;
 import com.ocimarabarcellos.mbaimobiliaria.DAO.ImovelDAO;
 import com.ocimarabarcellos.mbaimobiliaria.R;
-import com.ocimarabarcellos.mbaimobiliaria.helper.DbHelper;
 import com.ocimarabarcellos.mbaimobiliaria.helper.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -81,25 +79,24 @@ public class ImoveisFragment extends Fragment {
 
                                 AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
                                 //Configurar Titulo e Mensagem
-                                dialog.setTitle("Confirmar Exclusão");
-                                dialog.setMessage("Deseja excluir o imovel: " + imovSelecionado.getDsCidade() + " - " + imovSelecionado.getDsUF() + " ?");
-                                dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                dialog.setTitle(getString(R.string.msg_conf_exclusao));
+                                dialog.setMessage(getString(R.string.msg_excluir_imovel) + " " + imovSelecionado.getDsCidade() + " - " + imovSelecionado.getDsUF() + " ?");
+                                dialog.setPositiveButton(getString(R.string.msg_retorno_positivo), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         ImovelDAO imovelDAO = new ImovelDAO(getActivity().getApplicationContext());
                                         if (imovelDAO.deletar(imovSelecionado)){
                                             carregarImoveis();
-                                            Toast.makeText(getActivity().getApplicationContext(), "Imóvel Excluido com sucesso!", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.sucesso_excluir_imovel), Toast.LENGTH_LONG).show();
                                         }
                                         else
                                         {
-                                            Toast.makeText(getActivity().getApplicationContext(), "Erro ao Excluir Imóvel!", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_excluir_imovel), Toast.LENGTH_LONG).show();
                                         }
 
                                     }
                                 });
-
-                                dialog.setNegativeButton("Não", null);
+                                dialog.setNegativeButton(getString(R.string.msg_retorno_negativo), null);
                                 dialog.create();
                                 dialog.show();
 

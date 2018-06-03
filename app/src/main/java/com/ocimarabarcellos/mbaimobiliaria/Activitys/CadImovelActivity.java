@@ -43,11 +43,6 @@ public class CadImovelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cad_imovel);
 
-        //InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-
         edtDsImovel = findViewById(R.id.edtDsImovel);
         edtEndereco = findViewById(R.id.edtEndereco);
         edtCidade = findViewById(R.id.edtCidade);
@@ -56,11 +51,10 @@ public class CadImovelActivity extends AppCompatActivity {
 
         loadEstados();
 
-        //Recuperar a Imovel que foi passada
         imovAtual = (Imovel) getIntent().getSerializableExtra("ImovelSelecionado");
 
         if (imovAtual != null) {
-            //Configurar as recuperaçoes
+
             edtDsImovel.setText(imovAtual.getDsImovel());
             edtEndereco.setText(imovAtual.getDsEndereco());
             edtCidade.setText(imovAtual.getDsCidade());
@@ -105,44 +99,67 @@ public class CadImovelActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.itemSalvar :
-                ImovelDAO imovelDAO = new ImovelDAO(getApplicationContext());
-                Imovel imov = new Imovel();
-                imov.setDsImovel(edtDsImovel.getText().toString());
-                imov.setDsEndereco(edtEndereco.getText().toString());
-                imov.setDsCidade(edtCidade.getText().toString());
-                imov.setDsUF(uf);
 
-                if (imovAtual != null) { //Edição
-                    if (!edtDsImovel.getText().toString().isEmpty())
-                    {
-                        imov.setId(imovAtual.getId());
+                StringBuilder erroCampos = new StringBuilder();
 
-                        if (imovelDAO.atualizar(imov)) {
-                            finish();
-                            Toast.makeText(getApplicationContext(), "Imóvel Salvo com sucesso!", Toast.LENGTH_LONG).show();
+                if (edtDsImovel.getText().toString().equals(""))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_ds_imovel));
+                }
+                else if (edtEndereco.getText().toString().equals(""))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_endereco_imovel));
+                }
+                else if (edtCidade.getText().toString().equals(""))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_cidade_imovel));
+                }
+                else if (uf.toString().equals("Select") || uf.toString().equals("Selecione"))
+                {
+                    erroCampos.append(getString(R.string.msg_campo_vazio_estado));
+                }
+
+                if (erroCampos.toString().equals("")) {
+
+                    ImovelDAO imovelDAO = new ImovelDAO(getApplicationContext());
+                    Imovel imov = new Imovel();
+                    imov.setDsImovel(edtDsImovel.getText().toString());
+                    imov.setDsEndereco(edtEndereco.getText().toString());
+                    imov.setDsCidade(edtCidade.getText().toString());
+                    imov.setDsUF(uf);
+
+                    if (imovAtual != null) { //Edição
+                        if (!edtDsImovel.getText().toString().isEmpty()) {
+                            imov.setId(imovAtual.getId());
+
+                            if (imovelDAO.atualizar(imov)) {
+                                finish();
+                                Toast.makeText(getApplicationContext(), getString(R.string.sucesso_salvar_imovel), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), getString(R.string.error_salvar_imovel), Toast.LENGTH_LONG).show();
+                            }
+
                         }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(), "Erro ao salvar Imóvel!", Toast.LENGTH_LONG).show();
+                    } else {
+                        //Edição Adição
+                        //executa salvar para o item
+
+                        if (!edtDsImovel.getText().toString().isEmpty()) {
+                            if (imovelDAO.salvar(imov)) {
+                                finish();
+                                Toast.makeText(getApplicationContext(), getString(R.string.sucesso_salvar_imovel), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), getString(R.string.error_salvar_imovel), Toast.LENGTH_LONG).show();
+                            }
+
                         }
 
                     }
-                } else {
-                    //Edição Adição
-                    //executa salvar para o item
 
-                    if (!edtDsImovel.getText().toString().isEmpty()) {
-                        if (imovelDAO.salvar(imov)) {
-                            finish();
-                            Toast.makeText(getApplicationContext(), "Imóvel Salvo com sucesso!", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(), "Erro ao salvar Imóvel!", Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-
+                }
+                else
+                {
+                    Toast.makeText(CadImovelActivity.this, erroCampos.toString(), Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -154,7 +171,7 @@ public class CadImovelActivity extends AppCompatActivity {
     }
 
     public void loadEstados(){
-        siglasUf.add("Selecione");
+        siglasUf.add(getString(R.string.ds_select));
         siglasUf.add("AC");
         siglasUf.add("AM");
         siglasUf.add("AP");

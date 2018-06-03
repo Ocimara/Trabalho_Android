@@ -127,7 +127,7 @@ public class PrincipalActivity extends AppCompatActivity {
         ImovelDAO imovelDAO = new ImovelDAO(getApplicationContext());
         lstImoveis = imovelDAO.listar();
 
-        strImov.append("Agenda de Imóveis Barcellos \n");
+        strImov.append(getString(R.string.app_name) + " \n");
         strImov.append("---------------------------------\n");
 
         for(int i = 0; i < lstImoveis.size(); i++)

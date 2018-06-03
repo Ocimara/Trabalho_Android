@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                         validaLogin();
 
                     } else {
-                        Toast.makeText(LoginActivity.this, "Preencha os campos de E-mail e Senha", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, getString(R.string.msg_email_senha), Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -88,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
 
                     Iniciar();
-                    Toast.makeText(LoginActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.sucesso_login), Toast.LENGTH_LONG).show();
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "Usuário ou Senha inválidos! Tente novamente!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.error_usu_senha), Toast.LENGTH_LONG).show();
                 }
             }
         });

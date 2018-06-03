@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin5"
-        android:text="Endereço"
+        android:text="@string/tvDsEndereco"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin5"
-                android:autofillHints="Estado"
+                android:autofillHints="@string/tvDsUf"
                 android:persistentDrawingCache="none"></Spinner>
             <Button
                 android:id="@+id/btnMapa"
